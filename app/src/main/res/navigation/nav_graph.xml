@@ -8,7 +8,11 @@
         android:id="@+id/homeFragment"
         android:name="com.uninorte.a_202030_courseinfowithlogin.ui.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.uninorte.a_202030_courseinfowithlogin.ui.LoginFragment"

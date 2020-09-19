@@ -11,6 +11,7 @@ import androidx.fragment.app.activityViewModels
 import com.uninorte.a_202030_courseinfowithlogin.R
 import com.uninorte.a_202030_courseinfowithlogin.viewmodel.CourseViewModel
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_home.*
 
 /**
@@ -39,6 +40,10 @@ class HomeFragment : Fragment() {
 
         buttonAddCourse.setOnClickListener {
            courseViewModel.addCourse(usuario,token)
+        }
+
+        singOut.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
         }
 
     }
