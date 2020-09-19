@@ -28,18 +28,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/signInButton"
         app:layout_constraintEnd_toEndOf="@+id/editPassword" />
 
-    <Button
-        android:id="@+id/buttonAddCourse"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add course"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline4" />
-
     <EditText
         android:id="@+id/editEmail"
         android:layout_width="wrap_content"
