@@ -2,4 +2,4 @@
 
 Simple project based on our custom API
 
-![Pantalla](/basic.png)
+![Pantalla](Captura.PNG)
