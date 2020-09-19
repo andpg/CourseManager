@@ -17,11 +17,6 @@ import kotlinx.android.synthetic.main.fragment_home.*
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
 class HomeFragment : Fragment() {
-    val courseViewModel: CourseViewModel by activityViewModels()
-    val sharedPreferences = requireActivity().getPreferences(Context.MODE_PRIVATE)
-    val token: String = sharedPreferences.getString("token","").toString()
-    val usuario: String = sharedPreferences.getString("usuario","").toString()
-
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -32,6 +27,11 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val courseViewModel: CourseViewModel by activityViewModels()
+        val sharedPreferences = requireActivity().getPreferences(Context.MODE_PRIVATE)
+        val token: String = sharedPreferences.getString("token","").toString()
+        val usuario: String = sharedPreferences.getString("usuario","").toString()
 
         courseViewModel.getCourseData().observe(getViewLifecycleOwner(), Observer { users ->
             Log.d("MyOut", "Fragment  users list " + users.size)

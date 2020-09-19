@@ -19,10 +19,6 @@ import com.uninorte.a_202030_courseinfowithlogin.model.User
 import kotlinx.android.synthetic.main.fragment_login.*
 
 class LoginFragment : Fragment() {
-    val loginViewModel: LoginViewModel by activityViewModels()
-    val courseViewModel: CourseViewModel by activityViewModels()
-    val sharedPreferences = requireActivity().getPreferences(Context.MODE_PRIVATE)
-
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -33,6 +29,10 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val loginViewModel: LoginViewModel by activityViewModels()
+        val courseViewModel: CourseViewModel by activityViewModels()
+        val sharedPreferences = requireActivity().getPreferences(Context.MODE_PRIVATE)
 
         fun saveTokenAndGoHome(user: User) {
             if (user.token != "") {
