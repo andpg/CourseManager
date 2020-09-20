@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.05" />
+        app:layout_constraintGuide_begin="37dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/viewCourses"
@@ -40,7 +40,7 @@
         tools:itemCount="0" />
 
     <Button
-        android:id="@+id/singOut"
+        android:id="@+id/signOut"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -48,7 +48,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="#CDCCCC"
-        android:text="sing out"
+        android:text="sign out"
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline6"

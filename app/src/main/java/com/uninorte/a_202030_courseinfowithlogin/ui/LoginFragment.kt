@@ -2,20 +2,18 @@ package com.uninorte.a_202030_courseinfowithlogin.ui
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.Toast
+import androidx.core.content.edit
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import com.uninorte.a_202030_courseinfowithlogin.R
-import com.uninorte.a_202030_courseinfowithlogin.viewmodel.CourseViewModel
-import com.uninorte.a_202030_courseinfowithlogin.viewmodel.LoginViewModel
 import androidx.navigation.fragment.findNavController
+import com.uninorte.a_202030_courseinfowithlogin.R
 import com.uninorte.a_202030_courseinfowithlogin.model.User
+import com.uninorte.a_202030_courseinfowithlogin.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.fragment_login.*
 
 class LoginFragment : Fragment() {
@@ -31,19 +29,32 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val loginViewModel: LoginViewModel by activityViewModels()
-        val courseViewModel: CourseViewModel by activityViewModels()
         val sharedPreferences = requireActivity().getPreferences(Context.MODE_PRIVATE)
+
+        if (sharedPreferences.contains("usuario") and sharedPreferences.contains("token")) {
+            val token = sharedPreferences.getString("token","")!!
+            loginViewModel.checkToken(token).observe(getViewLifecycleOwner(), { isValid ->
+                if (isValid) {
+                    findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                } else {
+                    sharedPreferences.edit {
+                        remove("token")
+                        remove("usuario")
+                        apply()
+                    }
+                }
+            })
+        }
 
         fun saveTokenAndGoHome(user: User) {
             if (user.token != "") {
-                with(sharedPreferences.edit()) {
+                sharedPreferences.edit {
                     putString("token",user.token)
                     putString("usuario",user.username)
                     apply()
                 }
 
                 Toast.makeText(activity, "Token " + user.token, Toast.LENGTH_LONG).show()
-                courseViewModel.getCourses(user.username, user.token)
                 findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
             } else {
                 Toast.makeText(activity, "Token failure " + user.error, Toast.LENGTH_LONG).show()

@@ -3,7 +3,6 @@ package com.uninorte.a_202030_courseinfowithlogin.ui
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.uninorte.a_202030_courseinfowithlogin.R
 import com.uninorte.a_202030_courseinfowithlogin.model.Course
@@ -35,14 +34,13 @@ class CourseAdapter(private var courses: ArrayList<Course>): RecyclerView.Adapte
 
     class CourseViewHolder constructor(
         itemView: View
-    ): RecyclerView.ViewHolder(itemView){
-        val course_name = itemView.course_name
-        val professor_name = itemView.professor_name
-        val number_of_students = itemView.student_number
-
+    ): RecyclerView.ViewHolder(itemView) {
         fun bind(post: Course){
-            course_name.setText(post.name)
-            professor_name.setText(post.professor)
+            with (itemView) {
+                course_name.text = post.name
+                professor_name.text = "Professor: " + post.professor
+                student_number.text = "Number of students: " + post.students
+            }
         }
     }
 }

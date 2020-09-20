@@ -1,8 +1,9 @@
 package com.uninorte.a_202030_courseinfowithlogin.viewmodel
 
-import androidx.lifecycle.*
-import com.uninorte.a_202030_courseinfowithlogin.repository.LoginRepository
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.uninorte.a_202030_courseinfowithlogin.model.User
+import com.uninorte.a_202030_courseinfowithlogin.repository.LoginRepository
 
 class LoginViewModel : ViewModel(){
 
@@ -19,4 +20,5 @@ class LoginViewModel : ViewModel(){
 
     fun getUser() = userLiveData
 
+    fun checkToken(token: String) = repository.checkToken(token)
 }
