@@ -18,7 +18,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/buttonProfessor"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -47,32 +46,15 @@
                 android:layout_marginTop="10dp"
                 android:text="Number of students" />
 
+            <Button
+                android:id="@+id/buttonMembers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00FFFFFF"
+                android:text="see course members" />
+
 
         </LinearLayout>
-
-        <Button
-            android:id="@+id/buttonProfessor"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:text="about professor"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/buttonStudents"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/container1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/container1" />
-
-        <Button
-            android:id="@+id/buttonStudents"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="see students"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/buttonProfessor"
-            app:layout_constraintTop_toBottomOf="@+id/container1" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

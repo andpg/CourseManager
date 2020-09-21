@@ -3,9 +3,14 @@ package com.uninorte.a_202030_courseinfowithlogin.service.api.course
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.uninorte.a_202030_courseinfowithlogin.model.Course
+import com.uninorte.a_202030_courseinfowithlogin.model.NewStudent
+import com.uninorte.a_202030_courseinfowithlogin.model.RestartChecker
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
@@ -78,7 +83,7 @@ class CourseApiService {
                     if (loginResponse != null) {
                         //Log.d("MyOut", "OK isSuccessful token " )
                         courses.add(response.body()!!)
-                        Companion.theResponse.postValue(courses)
+                        theResponse.postValue(courses)
                     }
                 } else {
                     Log.d("MyOut", "NOK  "+response.code() )
@@ -88,6 +93,61 @@ class CourseApiService {
             }
 
             override fun onFailure(call: Call<Course>, t: Throwable) {
+                Log.d("MyOut","Failure "+t.message)
+            }
+
+        })
+    }
+
+    fun addStudent(user: String, token: String) {
+        Log.d("MyOut", "addStudent with token  <$token>")
+        val auth = "Bearer $token"
+        getRestEngine().addStudent(user,auth).enqueue(object: Callback<NewStudent>{
+            override fun onResponse(call: Call<NewStudent>, response: Response<NewStudent>) {
+                if (response.isSuccessful) {
+                    Log.d("MyOut", "OK isSuccessful ")
+                    val studentResponse = response.body()
+                    if (studentResponse != null) {
+                        val course = courses.first { course -> course.id == studentResponse.course_id }
+                        course.students = (course.students.toInt() + 1).toString()
+                        theResponse.postValue(courses)
+                    }
+                } else {
+                    Log.d("MyOut", "NOK  "+response.code() )
+                    Log.d("MyOut", "NOK  "+response.toString() )
+                    Log.d("MyOut", "NOK  "+response.errorBody().toString() )
+                }
+            }
+
+            override fun onFailure(call: Call<NewStudent>, t: Throwable) {
+                Log.d("MyOut","Failure "+t.message)
+            }
+
+        })
+    }
+
+    fun restart(user: String, token: String) {
+        Log.d("MyOut", "restart db with token  <$token>")
+        val auth = "Bearer "+token
+        getRestEngine().restart(user,auth).enqueue(object: Callback<RestartChecker>{
+            override fun onResponse(call: Call<RestartChecker>, response: Response<RestartChecker>) {
+                if (response.isSuccessful) {
+                    Log.d("MyOut", "OK isSuccessful ")
+                    val restartResponse = response.body()
+                    if (restartResponse != null) {
+                        if(restartResponse.result) {
+                            courses.clear()
+                            theResponse.postValue(courses)
+                        }
+                    }
+                } else {
+                    Log.d("MyOut", "NOK  "+response.code() )
+                    Log.d("MyOut", "NOK  "+response.toString() )
+                    Log.d("MyOut", "NOK  "+response.errorBody().toString() )
+                }
+            }
+
+            override fun onFailure(call: Call<RestartChecker>, t: Throwable) {
                 Log.d("MyOut","Failure "+t.message)
             }
 

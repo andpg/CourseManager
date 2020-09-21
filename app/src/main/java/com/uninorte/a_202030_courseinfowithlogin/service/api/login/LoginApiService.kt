@@ -2,7 +2,7 @@ package com.uninorte.a_202030_courseinfowithlogin.service.api.login
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.uninorte.a_202030_courseinfowithlogin.model.Checker
+import com.uninorte.a_202030_courseinfowithlogin.model.TokenChecker
 import com.uninorte.a_202030_courseinfowithlogin.model.User
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
@@ -116,8 +116,8 @@ class LoginApiService {
     fun checkToken(token: String) : MutableLiveData<Boolean>{
         val tokenResponse = MutableLiveData<Boolean>()
 
-        getRestEngine().checkToken(token).enqueue(object: Callback<Checker>{
-            override fun onResponse(call: Call<Checker>, response: Response<Checker>) {
+        getRestEngine().checkToken(token).enqueue(object: Callback<TokenChecker>{
+            override fun onResponse(call: Call<TokenChecker>, response: Response<TokenChecker>) {
                 if (response.isSuccessful) {
                     Log.d("MyOut", "OK isSuccessful " + response.body())
                     tokenResponse.value = response.body()?.valid
@@ -130,7 +130,7 @@ class LoginApiService {
                 }
             }
 
-            override fun onFailure(call: Call<Checker>, t: Throwable) {
+            override fun onFailure(call: Call<TokenChecker>, t: Throwable) {
                 Log.d("MyOut","Failure "+t.message)
             }
         })
