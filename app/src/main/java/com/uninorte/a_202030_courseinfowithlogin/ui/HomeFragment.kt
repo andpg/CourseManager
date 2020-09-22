@@ -1,7 +1,5 @@
 package com.uninorte.a_202030_courseinfowithlogin.ui
 
-import android.app.AlertDialog
-import android.app.AlertDialog.Builder
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -60,7 +58,7 @@ class HomeFragment : Fragment() {
                 remove("usuario")
                 apply()
             }
-            findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
+            findNavController().navigateUp()
         }
 
 

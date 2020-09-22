@@ -3,6 +3,8 @@ package com.uninorte.a_202030_courseinfowithlogin.ui
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.uninorte.a_202030_courseinfowithlogin.R
 import com.uninorte.a_202030_courseinfowithlogin.model.Course
@@ -35,11 +37,16 @@ class CourseAdapter(var courses: MutableList<Course>): RecyclerView.Adapter<Recy
     class CourseViewHolder constructor(
         itemView: View
     ): RecyclerView.ViewHolder(itemView) {
-        fun bind(post: Course){
+        fun bind(course: Course){
             with (itemView) {
-                course_name.text = post.name
-                professor_name.text = "Professor: " + post.professor
-                student_number.text = "Number of students: " + post.students
+                course_name.text = course.name
+                professor_name.text = "Professor: " + course.professor
+                student_number.text = "Number of students: " + course.students
+
+                buttonMembers.setOnClickListener {
+                    val bundle = bundleOf("course_id" to course.id)
+                    findNavController().navigate(R.id.action_homeFragment_to_courseFragment, bundle)
+                }
             }
         }
     }
