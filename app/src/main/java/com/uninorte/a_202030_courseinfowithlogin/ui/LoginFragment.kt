@@ -1,5 +1,6 @@
 package com.uninorte.a_202030_courseinfowithlogin.ui
 
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -57,6 +58,8 @@ class LoginFragment : Fragment() {
                 Toast.makeText(activity, "Token " + user.token, Toast.LENGTH_LONG).show()
                 findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
             } else {
+
+                showAlert(user.code)
                 Toast.makeText(activity, "Token failure " + user.error, Toast.LENGTH_LONG).show()
             }
         }
@@ -74,5 +77,13 @@ class LoginFragment : Fragment() {
             val usuario = email
             loginViewModel.signUp(email,clave,usuario).observe(getViewLifecycleOwner(), Observer { user -> saveTokenAndGoHome(user) })
         }
+    }
+
+    private fun showAlert(message: String){
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle("Alert")
+        builder.setMessage(message)
+        val dialog = builder.create()
+        dialog.show()
     }
 }

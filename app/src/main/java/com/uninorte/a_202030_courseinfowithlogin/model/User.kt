@@ -9,4 +9,5 @@ var token: String = "",
 var type: String = "",
 ) {
     var error: String = ""
+    var code: String = ""
 }

@@ -52,6 +52,7 @@ class LoginApiService {
                      user.error = response.errorBody().toString()
                      user.token = ""
                      userResponse.value = user
+                     user.code = ""+ response.code()
                  }
              }
 
@@ -82,6 +83,7 @@ class LoginApiService {
                     user.error = response.errorBody().toString()
                     user.token = ""
                     userResponse.value = user
+                    user.code = "" + response.code()
                 }
             }
 

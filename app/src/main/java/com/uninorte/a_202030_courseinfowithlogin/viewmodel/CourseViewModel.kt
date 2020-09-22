@@ -20,4 +20,6 @@ class CourseViewModel : ViewModel() {
 
     fun getCourseData() = repository.getCourseData()
 
+
+
 }
