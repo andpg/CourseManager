@@ -48,11 +48,12 @@ class LoginApiService {
                          userResponse.value = user
                      }
                  } else {
+                     user.code = ""+ response.code()
                      Log.d("MyOut", "NOK  "+response.code() )
                      user.error = response.errorBody().toString()
                      user.token = ""
                      userResponse.value = user
-                     user.code = ""+ response.code()
+
                  }
              }
 
@@ -79,11 +80,12 @@ class LoginApiService {
                         userResponse.value = user
                     }
                 } else {
+                    user.code = "" + response.code()
                     Log.d("MyOut", "NOK  "+response.code() )
                     user.error = response.errorBody().toString()
                     user.token = ""
                     userResponse.value = user
-                    user.code = "" + response.code()
+
                 }
             }
 
