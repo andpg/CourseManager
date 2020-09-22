@@ -55,12 +55,12 @@ class LoginFragment : Fragment() {
                     apply()
                 }
 
-                //Toast.makeText(activity, "Token " + user.token, Toast.LENGTH_LONG).show()  // Para una alerta emergente rapida
+                Toast.makeText(activity, "Token " + user.token, Toast.LENGTH_LONG).show()
                 findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
             } else {
 
                 showAlert(user.code)
-                //Toast.makeText(activity, "Token failure " + user.error, Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, "Token failure " + user.error, Toast.LENGTH_LONG).show()
             }
         }
 
