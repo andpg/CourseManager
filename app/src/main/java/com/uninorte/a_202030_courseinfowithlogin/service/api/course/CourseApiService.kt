@@ -3,7 +3,6 @@ package com.uninorte.a_202030_courseinfowithlogin.service.api.course
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.uninorte.a_202030_courseinfowithlogin.model.Course
-import com.uninorte.a_202030_courseinfowithlogin.model.NewStudent
 import com.uninorte.a_202030_courseinfowithlogin.model.RestartChecker
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -93,33 +92,6 @@ class CourseApiService {
             }
 
             override fun onFailure(call: Call<Course>, t: Throwable) {
-                Log.d("MyOut","Failure "+t.message)
-            }
-
-        })
-    }
-
-    fun addStudent(user: String, token: String) {
-        Log.d("MyOut", "addStudent with token  <$token>")
-        val auth = "Bearer $token"
-        getRestEngine().addStudent(user,auth).enqueue(object: Callback<NewStudent>{
-            override fun onResponse(call: Call<NewStudent>, response: Response<NewStudent>) {
-                if (response.isSuccessful) {
-                    Log.d("MyOut", "OK isSuccessful ")
-                    val studentResponse = response.body()
-                    if (studentResponse != null) {
-                        val course = courses.first { course -> course.id == studentResponse.course_id }
-                        course.students = (course.students.toInt() + 1).toString()
-                        theResponse.postValue(courses)
-                    }
-                } else {
-                    Log.d("MyOut", "NOK  "+response.code() )
-                    Log.d("MyOut", "NOK  "+response.toString() )
-                    Log.d("MyOut", "NOK  "+response.errorBody().toString() )
-                }
-            }
-
-            override fun onFailure(call: Call<NewStudent>, t: Throwable) {
                 Log.d("MyOut","Failure "+t.message)
             }
 

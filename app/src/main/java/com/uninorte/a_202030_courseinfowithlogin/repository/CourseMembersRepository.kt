@@ -8,4 +8,6 @@ class CourseMembersRepository {
     fun getCourseMembersData() = service.getCourseMembersData()
 
     fun getCourseMembers(user: String, token: String, courseId: String) = service.getCourseMembers(user,token,courseId)
+
+    fun addStudent(user: String, token: String, courseId: String) = service.addStudent(user,token,courseId)
 }

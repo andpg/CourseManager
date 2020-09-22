@@ -13,7 +13,6 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.uninorte.a_202030_courseinfowithlogin.R
-import com.uninorte.a_202030_courseinfowithlogin.model.Course
 import com.uninorte.a_202030_courseinfowithlogin.viewmodel.CourseViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -37,15 +36,16 @@ class HomeFragment : Fragment() {
         val token: String = sharedPreferences.getString("token","").toString()
         val usuario: String = sharedPreferences.getString("usuario","").toString()
 
-        courseViewModel.getCourses(usuario, token)
+        viewCourses.layoutManager = LinearLayoutManager(requireContext())
+        viewCourses.adapter = CourseAdapter(mutableListOf())
+        val adapter = viewCourses.adapter as CourseAdapter
 
+        courseViewModel.getCourses(usuario, token)
         courseViewModel.getCourseData().observe(getViewLifecycleOwner(), Observer { courses ->
             Log.d("MyOut", "Fragment users courses " + courses)
-            val manager = LinearLayoutManager(context)
-            viewCourses.apply {
-                layoutManager = manager
-                adapter = CourseAdapter(courses as ArrayList<Course>)
-            }
+            adapter.courses.clear()
+            adapter.courses.addAll(courses)
+            adapter.notifyDataSetChanged()
         })
 
         buttonAddCourse.setOnClickListener {

@@ -9,4 +9,6 @@ class CourseMembersViewModel : ViewModel() {
     fun getCourseMembersData() = repository.getCourseMembersData()
 
     fun getCourseMembers(user: String, token: String, courseId: String) = repository.getCourseMembers(user,token,courseId)
+
+    fun addStudent(user: String, token: String, courseId: String) = repository.addStudent(user,token,courseId)
 }

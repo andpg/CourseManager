@@ -8,7 +8,7 @@ import com.uninorte.a_202030_courseinfowithlogin.R
 import com.uninorte.a_202030_courseinfowithlogin.model.Course
 import kotlinx.android.synthetic.main.layout_list_item_courses.view.*
 
-class CourseAdapter(private var courses: ArrayList<Course>): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+class CourseAdapter(var courses: MutableList<Course>): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
 
 

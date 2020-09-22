@@ -3,6 +3,7 @@ package com.uninorte.a_202030_courseinfowithlogin.service.api.course_members
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.uninorte.a_202030_courseinfowithlogin.model.CourseMembers
+import com.uninorte.a_202030_courseinfowithlogin.model.NewStudent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -56,4 +57,27 @@ class CourseMembersApiService {
 
         })
     }
+
+    fun addStudent(user: String, token: String, courseId: String) {
+        Log.d("MyOut", "addStudent with token  <$token>")
+        val auth = "Bearer $token"
+        getRestEngine().addStudent(user,auth,courseId).enqueue(object: Callback<NewStudent>{
+            override fun onResponse(call: Call<NewStudent>, response: Response<NewStudent>) {
+                if (response.isSuccessful) {
+                    Log.d("MyOut", "OK isSuccessful ")
+                    getCourseMembers(user,token,courseId)
+                } else {
+                    Log.d("MyOut", "NOK  "+response.code() )
+                    Log.d("MyOut", "NOK  "+response.toString() )
+                    Log.d("MyOut", "NOK  "+response.errorBody().toString() )
+                }
+            }
+
+            override fun onFailure(call: Call<NewStudent>, t: Throwable) {
+                Log.d("MyOut","Failure "+t.message)
+            }
+
+        })
+    }
+
 }
