@@ -33,6 +33,16 @@ class LoginApiService {
         }
     }
 
+    fun answerCode(codigo: String): String {
+        var answer: String = ""
+        when(codigo){
+            "400" -> {answer = "E-Mail and Password are required"}
+            "403" -> {answer = "E-mail and/or Password are/is wrong"}
+            "409" -> {answer = "User already exist"}
+            else -> {answer = "Error "+ codigo}
+        }
+        return answer
+    }
 
      fun signIn(user: User) : MutableLiveData<User>{
         val userResponse = MutableLiveData<User>()
@@ -48,7 +58,7 @@ class LoginApiService {
                          userResponse.value = user
                      }
                  } else {
-                     user.code = ""+ response.code()
+                     user.code = answerCode(response.code().toString())
                      Log.d("MyOut", "NOK  "+response.code() )
                      user.error = response.errorBody().toString()
                      user.token = ""
@@ -80,7 +90,7 @@ class LoginApiService {
                         userResponse.value = user
                     }
                 } else {
-                    user.code = "" + response.code()
+                    user.code = answerCode(response.code().toString())
                     Log.d("MyOut", "NOK  "+response.code() )
                     user.error = response.errorBody().toString()
                     user.token = ""

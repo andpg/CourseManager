@@ -52,7 +52,7 @@ class HomeFragment : Fragment() {
            courseViewModel.addCourse(usuario,token)
         }
 
-        signOut.setOnClickListener {
+        imageButtonSignOut.setOnClickListener {
             sharedPreferences.edit {
                 remove("token")
                 remove("usuario")
