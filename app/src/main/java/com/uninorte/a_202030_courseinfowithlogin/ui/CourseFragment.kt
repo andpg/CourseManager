@@ -6,9 +6,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import com.uninorte.a_202030_courseinfowithlogin.R
 import com.uninorte.a_202030_courseinfowithlogin.viewmodel.CourseMembersViewModel
 import kotlinx.android.synthetic.main.fragment_course.*
@@ -36,8 +38,15 @@ class CourseFragment : Fragment() {
 
         courseViewModel.getCourseMembers(usuario, token, course_id!!)
         courseViewModel.getCourseMembersData().observe(getViewLifecycleOwner(), Observer { course ->
-            Log.d("MyOut", "Fragment course with members " + course)
-            coursename.text = course.name
+            Log.d("MyOut", "Fragment course with " + course)
+            courseName.text = course.name
+            profName.text = course.professor.name
+            profMail.text = course.professor.email
+
+            profButton.setOnClickListener {
+                val bundle = bundleOf("professor_id" to course.professor.id)
+                view.findNavController().navigate(R.id.action_courseFragment_to_personFragment, bundle)
+            }
         })
     }
 }

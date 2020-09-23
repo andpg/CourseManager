@@ -33,7 +33,7 @@
         android:label="fragment_members"
         tools:layout="@layout/fragment_course" >
         <action
-            android:id="@+id/action_membersFragment_to_personFragment"
+            android:id="@+id/action_courseFragment_to_personFragment"
             app:destination="@id/personFragment" />
     </fragment>
 </navigation>
