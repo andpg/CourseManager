@@ -51,9 +51,13 @@ class CourseFragment : Fragment() {
                 val bundle = bundleOf("professor_id" to course.professor.id)
                 view.findNavController().navigate(R.id.action_courseFragment_to_personFragment, bundle)
             }
+
             adapter.students.clear()
             adapter.students.addAll(course.students)
             adapter.notifyDataSetChanged()
+            floatingActionButtonAddStudent.setOnClickListener {
+                courseViewModel.addStudent(usuario,token,course_id)
+            }
         })
     }
 }
