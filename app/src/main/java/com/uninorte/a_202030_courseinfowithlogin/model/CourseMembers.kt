@@ -4,5 +4,5 @@ class  CourseMembers (
     var id: String,
     var name: String,
     var professor: Professor,
-    //var students: List<Student>
+    var students: List<Student>
 )

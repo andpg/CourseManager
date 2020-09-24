@@ -7,29 +7,29 @@ import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.uninorte.a_202030_courseinfowithlogin.R
-import com.uninorte.a_202030_courseinfowithlogin.model.Course
-import kotlinx.android.synthetic.main.layout_list_item_courses.view.*
+import com.uninorte.a_202030_courseinfowithlogin.model.Student
+import kotlinx.android.synthetic.main.layout_list_item_students.view.*
 
-class CourseAdapter(var courses: MutableList<Course>): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+class StudentAdapter(var students: MutableList<Student>): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return CourseViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.layout_list_item_courses, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.layout_list_item_students, parent, false)
         )
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder){
             is CourseViewHolder ->{
-                holder.bind(courses.get(position))
+                holder.bind(students.get(position))
             }
         }
     }
 
     override fun getItemCount(): Int {
-        return courses.size
+        return students.size
     }
 
 
@@ -37,14 +37,13 @@ class CourseAdapter(var courses: MutableList<Course>): RecyclerView.Adapter<Recy
     class CourseViewHolder constructor(
         itemView: View
     ): RecyclerView.ViewHolder(itemView) {
-        fun bind(course: Course){
+        fun bind(student: Student){
             with (itemView) {
-                course_name.text = course.name
-                professor_name.text = "Professor: " + course.professor
-                student_number.text = "Number of students: " + course.students
+                student_name.text = student.name
+                student_mail.text = student.email
                 setOnClickListener {
-                    val bundle = bundleOf("course_id" to course.id)
-                    findNavController().navigate(R.id.action_homeFragment_to_courseFragment, bundle)
+                    val bundle = bundleOf("student_id" to student.id)
+                    findNavController().navigate(R.id.action_courseFragment_to_personFragment, bundle)
                 }
             }
         }

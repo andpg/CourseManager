@@ -19,29 +19,21 @@
         android:padding="10dp">
 
         <TextView
-            android:id="@+id/course_name"
+            android:id="@+id/student_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Course Name"
+            android:text="Student Name"
             android:textColor="#FFFFFF"
             android:textSize="19sp" />
 
         <TextView
-            android:id="@+id/professor_name"
+            android:id="@+id/student_mail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Professor Name"
+            android:text="Student Email"
             android:textColor="#FFFFFF"
             android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/student_number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Number of students"
-            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 

@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.uninorte.a_202030_courseinfowithlogin.R
 import com.uninorte.a_202030_courseinfowithlogin.viewmodel.CourseMembersViewModel
 import kotlinx.android.synthetic.main.fragment_course.*
@@ -36,17 +37,23 @@ class CourseFragment : Fragment() {
         val usuario = sharedPreferences.getString("usuario","").toString()
         val course_id = requireArguments().getString("course_id")
 
+        viewStudents.layoutManager = LinearLayoutManager(requireContext())
+        viewStudents.adapter = StudentAdapter(mutableListOf())
+        val adapter = viewStudents.adapter as StudentAdapter
+
         courseViewModel.getCourseMembers(usuario, token, course_id!!)
         courseViewModel.getCourseMembersData().observe(getViewLifecycleOwner(), Observer { course ->
             Log.d("MyOut", "Fragment course with " + course)
             courseName.text = course.name
             profName.text = course.professor.name
             profMail.text = course.professor.email
-
             profButton.setOnClickListener {
                 val bundle = bundleOf("professor_id" to course.professor.id)
                 view.findNavController().navigate(R.id.action_courseFragment_to_personFragment, bundle)
             }
+            adapter.students.clear()
+            adapter.students.addAll(course.students)
+            adapter.notifyDataSetChanged()
         })
     }
 }
