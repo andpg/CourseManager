@@ -3,7 +3,7 @@
 Simple project based on our custom API<br>
 Con bastante esfuerzo y dedicacion.<br><br>
 
-En el siguiente video se da un tour por la App (demo) y por el codigo.
+En el siguiente video se da un tour por la App (demo) y por el codigo.<br>
 [![Pantalla](https://img.youtube.com/vi/JYwGHLF5zsw/0.jpg)](https://youtu.be/JYwGHLF5zsw)
 
 Imagenes demostrativas
