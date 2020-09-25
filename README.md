@@ -1,9 +1,9 @@
 # A_202030_CourseInfoWithLogin
 
-Simple project based on our custom API
-Con bastante esfuerzo y dedicacion,
-En el siguiente video se da un tour por la App (demo) y por el codigo.
+Simple project based on our custom API<br>
+Con bastante esfuerzo y dedicacion.<br><br>
 
+En el siguiente video se da un tour por la App (demo) y por el codigo.
 [![Pantalla](https://img.youtube.com/vi/JYwGHLF5zsw/0.jpg)](https://youtu.be/JYwGHLF5zsw)
 
 Imagenes demostrativas
