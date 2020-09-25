@@ -61,7 +61,9 @@ class HomeFragment : Fragment() {
             findNavController().navigateUp()
         }
 
-
+        buttonRestart.setOnClickListener {
+            courseViewModel.restart(usuario,token)
+        }
     }
 
 

@@ -47,7 +47,8 @@ class PersonFragment : Fragment() {
             Log.d("MyOut", "Fragment person with " + person)
             personName.text = person.name
             personMail.text = person.email
-            personCity.text = person.city + ", " + person.country
+            personCity.text = "City: " + person.city + ", " + person.country
+            personPhone.text = "Phone: " + person.phone
         })
     }
 }

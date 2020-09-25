@@ -108,8 +108,7 @@ class CourseApiService {
                     val restartResponse = response.body()
                     if (restartResponse != null) {
                         if(restartResponse.result) {
-                            courses.clear()
-                            theResponse.postValue(courses)
+                            getCourses(user, token)
                         }
                     }
                 } else {

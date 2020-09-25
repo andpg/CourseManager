@@ -16,7 +16,7 @@ interface CourseApi {
     @POST("{dbId}/courses")
     fun addCourse(@Path("dbId") user: String, @Header ("Authorization") header: String): Call<Course>
 
-    @GET("restart")
+    @GET("{dbId}/restart")
     fun restart(@Path("dbId") user: String, @Header ("Authorization") header: String): Call<RestartChecker>
 
 }
