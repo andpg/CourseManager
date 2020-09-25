@@ -9,8 +9,13 @@ En el siguiente video se da un tour por la App (demo) y por el codigo.
 Imagenes demostrativas
 
 ![Pantalla](Screen/1.PNG)
+
 ![Pantalla](Screen/2.PNG)
+
 ![Pantalla](Screen/3.PNG)
+
 ![Pantalla](Screen/4.PNG)
+
 ![Pantalla](Screen/5.PNG)
+
 ![Pantalla](Screen/6.PNG)
